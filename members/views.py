@@ -31,6 +31,8 @@ def members(request):
 #     else:
 #         return HttpResponse("Not Working")
 
+def book(request):
+    return render(request, 'third.html')
 
 def mymembers2(request):
     # need to use filter
