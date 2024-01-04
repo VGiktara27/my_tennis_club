@@ -16,4 +16,4 @@ def test_fun():
         i.save()
     #    entry in member_list
     print(f"Member.object.all().values() == {Member.objects.all().values()}")
-    print(i.delete())
+
