@@ -40,18 +40,16 @@
   </div>
 </nav>
 
-<form>
+<form method="post" action="">
+  {% csrf_token %}
   <div class="mb-3">
     <label  class="form-label">First Name</label>
-    <input type="text" class="form-control"  aria-describedby="emailHelp">
-
+    <input type="text" class="form-control" name="firstname" id="firstname" aria-describedby="emailHelp">
   </div>
   <div class="mb-3">
     <label  class="form-label">Last Name</label>
-    <input type="text" class="form-control"  aria-describedby="emailHelp">
-
+    <input type="text" class="form-control" name="lastname" id="lastname" aria-describedby="emailHelp">
   </div>
-
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </body>
