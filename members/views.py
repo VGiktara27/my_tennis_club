@@ -6,11 +6,17 @@ from members.data import test_fun
 from members.models import Member
 from django.contrib import messages
 
+
 def members(request):
-    print(f"req=={request.POST}")
+    print(f"req=={request}")
     if request.method == "POST":
-        print(f"got pos req")
+        print(f"req.post=={request.POST}")
         Member.objects.create(firstname=request.POST.get('firstname'), lastname=request.POST.get('lastname'))
+
+        mymembers = Member.objects.all().values()
+        context = {'mymembers': mymembers}
+        return render(request, 'second.html', context)
+
     return render(request, 'first.html')
 
 
@@ -33,7 +39,5 @@ def mymembers2(request):
     # mymembers = Member.objects.filter(id).order_by('-id')[0]
      # mymembers = Member.objects.latest('id')
     mymembers = Member.objects.all().values()
-    context = {
-        'mymembers': mymembers,
-    }
+    context = {'mymembers': mymembers}
     return render(request, 'second.html', context)
