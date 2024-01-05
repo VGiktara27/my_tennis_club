@@ -7,6 +7,7 @@ from members.models import Member
 from members.models import Author
 from django.contrib import messages
 from members.models import Books
+from members.models import Lent
 
 
 def members(request):
@@ -26,17 +27,30 @@ def members(request):
     return render(request, 'first.html')
 
 
+def lentz(request):
+    print(f"req=={request}")
+
+    books3 = Member.objects.all().values()
+    books4 = Books.objects.all().values()
+    context = {'books': books3, 'book2s': books4}
+    return render(request, 'MemberBooks', context)
+
+
 def author(request):
     print(f"req=={request}")
     if request.method == "POST":
         print(f"req.post=={request.POST}")
-        Author.objects.create(firstname=request.POST.get('firstname'), lastname=request.POST.get('lastname'))
+        Author.objects.create(firstname=request.POST.get('firstname'), lastname=request.POST.get('lastname'),
+                              phone_number=request.POST.get('phone_number'),
+                              author_id=int(request.POST.get('author_id')),
+                              email=request.POST.get('email'))
 
         mymembers2 = Author.objects.all().values()
         context = {'mymembers': mymembers2}
         return render(request, 'second.html', context)
 
     return render(request, 'author.html')
+
 
 # def show(request):
 #     print(f"req=={request.POST}")
@@ -61,8 +75,8 @@ def book(request):
                              bookname=request.POST.get('book_name'))
         return HttpResponse("Data Saved")
 
-
     books3 = Author.objects.all().values()
+    print("bookss",type(books3))
     context = {'books': books3}
     return render(request, 'third.html', context)
 
