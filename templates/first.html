@@ -47,11 +47,30 @@
     <label  class="form-label">First Name</label>
     <input type="text" class="form-control" name="firstname" id="firstname" aria-describedby="emailHelp">
   </div>
-  <div class="mb-3">
-    <label  class="form-label">Author Name</label>
-    <input type="text" class="form-control" name="author_name" id="author_name" aria-describedby="emailHelp">
+   <div class="mb-3">
+    <label  class="form-label">last Name</label>
+    <input type="text" class="form-control" name="firstname" id="lastname" aria-describedby="emailHelp">
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+   <div class="mb-3">
+    <label  class="form-label">Phone Number</label>
+    <input type="text" class="form-control" name="firstname" id="phone_number" aria-describedby="emailHelp">
+  </div>
+   <div class="mb-3">
+    <label  class="form-label">Email</label>
+    <input type="text" class="form-control" name="firstname" id="email" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label  class="form-label">Member_Id</label>
+    <input type="text" class="form-control" name="firstname" id="author_id" aria-describedby="emailHelp">
+  </div>
+   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </body>
 </html>
+
+
+<!--author_id = models.IntegerField(max_length=255, primary_key=True),-->
+<!--    firstname = models.CharField(max_length=255, null=False)-->
+<!--    lastname = models.CharField(max_length=255, null=False)-->
+<!--    phone_number = models.CharField(max_length=255, null=False, default="")-->
+<!--    email = models.CharField(max_length=255, null=False, default="")-->
