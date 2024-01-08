@@ -108,6 +108,13 @@ def listsofbooks(request):
     context = {'books': books3}
     return render(request, 'ListofBooks.html',context)
 
+def listsofauthors(request):
+
+    books3 = Author.objects.all().values()
+    # print("bookss", type(books3))
+    context = {'books': books3}
+    return render(request, 'ListofAuthor.html',context)
+
 
 def members(request):
     print(f"req=={request}")
