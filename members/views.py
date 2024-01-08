@@ -76,7 +76,7 @@ def book(request):
         return HttpResponse("Data Saved")
 
     books3 = Author.objects.all().values()
-    print("bookss",type(books3))
+    print("bookss", type(books3))
     context = {'books': books3}
     return render(request, 'third.html', context)
 
@@ -87,6 +87,40 @@ def mymembers2(request):
     # mymembers = Member.objects.filter(testfield=12).latest('testfield')
     # mymembers = Member.objects.filter(id).order_by('-id')[0]
     # mymembers = Member.objects.latest('id')
-    mymembers = Member.objects.all().values()
+    mymembers = Author.objects.all().values()
     context = {'mymembers': mymembers}
     return render(request, 'second.html', context)
+
+
+def listsofbooks(request):
+
+    if request.method =="POST":
+        print(f"req.post=={request.POST}")
+        member_inst = Author.objects.get(author_id=int(request.POST.get('author_id')))
+        mydata = Books.objects.filter(author_id=member_inst).values()
+        books3 = Author.objects.all().values()
+        context={'mymembers':mydata,
+                 'books':books3
+                 }
+        return render(request,'ListofBooks.html',context)
+    books3 = Author.objects.all().values()
+    # print("bookss", type(books3))
+    context = {'books': books3}
+    return render(request, 'ListofBooks.html',context)
+
+
+def members(request):
+    print(f"req=={request}")
+    if request.method == "POST":
+        print(f"req.post=={request.POST}")
+        Member.objects.create(firstname=request.POST.get('firstname'), lastname=request.POST.get('lastname'),
+                              phone_number=request.POST.get('phone_number'),
+                              Member_id=int(request.POST.get('member_id')),
+                              email=request.POST.get('email'))
+        return HttpResponse("Data Saved")
+
+        mymembers = Member.objects.all().values()
+        context = {'mymembers': mymembers}
+        return render(request, 'second.html', context)
+
+    return render(request, 'first.html')
