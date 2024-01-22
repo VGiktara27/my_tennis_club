@@ -36,3 +36,5 @@ class Lent(models.Model):
     member_id = models.ForeignKey(Member,null=True,on_delete=models.CASCADE)
     book_id=models.ForeignKey(Books,null=True,on_delete=models.CASCADE)
     Date=models.DateField(null=False)
+
+

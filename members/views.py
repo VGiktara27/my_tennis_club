@@ -8,7 +8,7 @@ from members.models import Author
 from django.contrib import messages
 from members.models import Books
 from members.models import Lent
-
+from django.db.models import Count
 
 def members(request):
     print(f"req=={request}")
@@ -131,3 +131,18 @@ def members(request):
         return render(request, 'second.html', context)
 
     return render(request, 'first.html')
+
+
+def charts(request):
+    bookid_set = Books.objects.values('author_id').annotate(book_count=Count('book_id'))
+    bookid_list=list(bookid_set)
+
+    auth_list=[items['author_id'] for items in bookid_list]
+    value_list=[items['book_count'] for items in bookid_list]
+
+    print(f' auth_list---{ auth_list}')
+    print(f' value_list---{value_list}')
+
+    context={'auth_list':auth_list,'value_list':value_list}
+    print(context)
+    return render(request, 'Charts.html',context)

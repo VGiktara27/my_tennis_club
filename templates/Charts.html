@@ -1,0 +1,39 @@
+<!-- index.html -->
+{% load static %}
+<html>
+<head>
+<title>Charts</title>
+
+</head>
+<body>
+    <div class="row mt-3 mx-3 justify-content-center">
+                   <canvas id="myChart"></canvas>
+                </div>
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+ const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: {{auth_list | safe}},
+      datasets: [{
+        label: '# of Votes',
+        data: {{value_list | safe}},
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+
+
+</body>
+</html>
